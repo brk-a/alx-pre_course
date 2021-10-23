@@ -3,7 +3,7 @@ DEFINE SORT_H
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdio.h>
+#include <string.h>
 
 /**
  * print_array - Prints an array of integers
