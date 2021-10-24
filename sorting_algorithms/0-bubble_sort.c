@@ -1,4 +1,4 @@
-include "sort.h"
+#include "sort.h"
 
 /**
  *bubble_sort - sort an array using bubble sort algo
@@ -21,9 +21,7 @@ for (j = 0; size - 1 - i; j++)
 {
 if (array[j] < array[j + 1])
 {
-array[j] += array[j + 1];
-array[j + 1] = array[j] - array[j + 1];
-array[j] += array[j + 1];
+exchange(array[j], array[j+1);
 print_array(array, size);
 flag = 1;
 }

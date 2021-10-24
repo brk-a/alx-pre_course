@@ -1,5 +1,5 @@
-IFNDEF SORT_H
-DEFINE SORT_H
+#ifndef SORT_H
+#define SORT_H
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -61,6 +61,51 @@ typedef struct listint_s
   struct listint_s *next;
 } listint_t;
 
+/**
+ * exchange - swaps ints in an arr
+ * @x: 1st int
+ * @y: 2nd int
+ *
+ * Returns: nada
+ */
+void exchange(int *x, int *y)
+{
+  *x += *y;
+  *y = *x - *y;
+  *x -= *y;
+}
+
+/**
+ * partition - partitions the array during sorting
+ * @array: the arr to partition
+ * @low: low end of arr
+ * @high: high end of arr
+ * @size: len of arr
+ * Return: index of the next pivot
+ */
+int partition(int *array, int low, int high, size_t size)
+{
+  int i, j, piv;
+
+  piv = array[high];
+  for (j = low, i = low - 1; j < high; j++)
+    {
+      if (array[j] < piv)
+	{
+	  i++;
+	  exchange(array[i], array[j]);
+	  if (array[i] != array[j])
+	    print_array(array, size);
+	}
+    }
+  array[i + 1] += piv;
+  piv = array[i + 1] - piv;
+  array[i + 1] -= piv;
+  if (array[high] != array[i + 1])
+    print_array(array, size);
+  return (i + 1);
+}
+
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
@@ -75,4 +120,4 @@ void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
 void sort_deck(deck_node_t **deck);
 
-ENDIF
+#endif
